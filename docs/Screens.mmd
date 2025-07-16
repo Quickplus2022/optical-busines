@@ -1,0 +1,14 @@
+flowchart LR
+    D[Dashboard]
+    BN[Cadastro de Negócio]
+    SUP[Fornecedores & Custos]
+    FIN[Módulo Financeiro]
+    STR[Módulo Estratégico]
+    REP[Relatórios]
+
+    D --> BN
+    BN --> SUP
+    SUP --> FIN
+    FIN --> STR
+    STR --> REP
+    REP --> D

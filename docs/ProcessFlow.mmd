@@ -1,0 +1,30 @@
+flowchart TD
+    subgraph Autenticação
+        A[Cadastro / Login] --> B[Token JWT]
+    end
+
+    subgraph Setup
+        B --> C[Dashboard]
+        C --> D[Criar Negócio]
+        D --> E[Adicionar Fornecedores e Custos]
+    end
+
+    subgraph Financeiro
+        E --> F[Custos Fixos & Variáveis]
+        F --> G[Projeção de Faturamento]
+        G --> H[Simular Ponto de Equilíbrio]
+        H --> I[Gerar DRE]
+    end
+
+    subgraph Estratégico
+        I --> J[Análise SWOT]
+        J --> K[Modelo Canvas]
+        K --> L[Definir Metas e KPI]
+    end
+
+    subgraph Relatórios
+        L --> M[Dashboards]
+        M --> N[Exportar PDF / Excel]
+    end
+
+    N --> C

@@ -1,0 +1,116 @@
+erDiagram
+    users {
+        uuid id PK
+        text name
+        text email
+        text password_hash
+        text role
+        timestamp created_at
+    }
+    businesses {
+        uuid id PK
+        uuid owner_id FK
+        text name
+        text segment
+        text location
+        text target_market
+        timestamp created_at
+    }
+    users ||--o{ businesses : owns
+
+    suppliers {
+        uuid id PK
+        uuid business_id FK
+        text name
+        text contact_info
+        timestamp created_at
+    }
+    businesses ||--o{ suppliers : has
+
+    supplier_prices {
+        uuid id PK
+        uuid supplier_id FK
+        text product_service
+        decimal price
+        date start_date
+        date end_date
+    }
+    suppliers ||--o{ supplier_prices : "price history"
+
+    products {
+        uuid id PK
+        uuid business_id FK
+        text name
+        decimal base_cost
+        decimal margin_percent
+        decimal tax_percent
+    }
+    businesses ||--o{ products : sells
+
+    fixed_costs {
+        uuid id PK
+        uuid business_id FK
+        text name
+        decimal value
+        text frequency
+    }
+    businesses ||--o{ fixed_costs : incurs
+
+    variable_costs {
+        uuid id PK
+        uuid business_id FK
+        text name
+        decimal percent_of_revenue
+    }
+    businesses ||--o{ variable_costs : incurs
+
+    financial_projections {
+        uuid id PK
+        uuid business_id FK
+        date period
+        decimal revenue
+        decimal cost
+        decimal profit
+    }
+    businesses ||--o{ financial_projections : projects
+
+    swots {
+        uuid id PK
+        uuid business_id FK
+        text strengths
+        text weaknesses
+        text opportunities
+        text threats
+    }
+    businesses ||--o{ swots : analyses
+
+    canvases {
+        uuid id PK
+        uuid business_id FK
+        text key_partners
+        text key_activities
+        text value_propositions
+        text customer_segments
+        text channels
+        text customer_relationships
+        text revenue_streams
+        text cost_structure
+    }
+    businesses ||--o{ canvases : creates
+
+    goals {
+        uuid id PK
+        uuid business_id FK
+        text objective
+        date due_date
+    }
+    businesses ||--o{ goals : sets
+
+    kpis {
+        uuid id PK
+        uuid goal_id FK
+        text metric
+        decimal target_value
+        decimal current_value
+    }
+    goals ||--o{ kpis : measures
